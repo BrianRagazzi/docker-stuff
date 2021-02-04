@@ -1,0 +1,18 @@
+# FROM platauto:4.3.0
+# RUN apt-get -y update && apt-get install -y jq ruby-full software-properties-common && gem install cf-uaac
+# RUN add-apt-repository ppa:rmescandon/yq && apt-get -y update && apt-get install yq -y
+
+FROM alpine
+ENV PATH "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:${PATH}"
+ENV CREDHUB_CLIENT "credhub"
+ENV CREDHUB_SERVER ""
+ENV CREDHUB_SECRET ""
+
+RUN apk add git libc6-compat \
+  && wget https://github.com/cloudfoundry-incubator/credhub-cli/releases/download/2.7.0/credhub-linux-2.7.0.tgz \
+  && tar zxvf credhub-linux-2.7.0.tgz \
+  && mv ./credhub /usr/local/bin \
+  && rm credhub-linux-2.7.0.tgz \
+  && credhub --version
+
+ENTRYPOINT ["/bin/sh"]

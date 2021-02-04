@@ -1,0 +1,23 @@
+FROM alpine:latest as HUGO
+# generate hugo site
+ENV HUGO_VERSION=0.80.0
+ENV THEME=techdoc
+#COPY ./lablinks/ /site/
+# install hugo
+ADD https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_Linux-64bit.tar.gz /tmp/
+# change workdir for npm
+WORKDIR ./site
+# /site/themes/techdoc
+RUN tar -xf /tmp/hugo_${HUGO_VERSION}_Linux-64bit.tar.gz -C /usr/local/bin/ && \
+    chmod +x /usr/local/bin/hugo && \
+    apk add --update npm git
+
+
+# serve site with nginx
+FROM nginx:stable-alpine
+RUN apk --update add curl bash
+# copy custom config for site
+COPY ./nginx.conf /etc/nginx/conf.d/nginx.conf
+# copy site content from first container
+# COPY --from=HUGO /site/public/ /usr/share/nginx/html/
+EXPOSE 80

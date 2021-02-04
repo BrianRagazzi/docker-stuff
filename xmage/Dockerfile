@@ -13,9 +13,9 @@ ENV XMAGE_DOCKER_SERVER_ADDRESS="0.0.0.0" \
 
 # Build args
 ARG XMAGE_VERSION
-ARG BUILD_TIME
+#ARG BUILD_TIME
 LABEL xmage_version="${XMAGE_VERSION}"
-LABEL build_time="${BUILD_TIME}"
+#LABEL build_time="${BUILD_TIME}"
 
 # Install prereqs
 

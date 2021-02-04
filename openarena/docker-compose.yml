@@ -1,0 +1,8 @@
+openarena:
+  image: fgracia/openarena
+  ports:
+    - "27950:27950/udp"
+    - "27960:27960/udp"
+  volumes:
+    - /etc/localtime:/etc/localtime:ro
+    - /<local-directory-for-config-files>:/data
