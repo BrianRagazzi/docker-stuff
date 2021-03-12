@@ -4,7 +4,7 @@ ENV HUGO_VERSION=0.80.0
 # change workdir for npm
 WORKDIR /site
 
-EXPOSE 80
+EXPOSE 1313
 
 ENV UID=1000 GID=1000 THEME="techdoc" REPO_NAME=BrianRagazzi/hugosite REPO_BRANCH=lab REPO_TOKEN=token
 
@@ -20,7 +20,7 @@ RUN tar -xf /tmp/hugo_${HUGO_VERSION}_Linux-64bit.tar.gz -C /tmp/ \
     && rm -rf /tmp/LICENSE.md \
     && rm -rf /tmp/README.md \
     && chmod +x /usr/local/sbin/hugo \
-    && apk add --update npm libc6-compat libstdc++ \
+    && apk add --update git npm libc6-compat libstdc++ \
     && apk upgrade \
     && apk add --no-cache ca-certificates \
     && chmod 0777 /run.sh
@@ -28,7 +28,7 @@ RUN tar -xf /tmp/hugo_${HUGO_VERSION}_Linux-64bit.tar.gz -C /tmp/ \
 VOLUME /site
 VOLUME /output
 
-WORKDIR /site
+WORKDIR /
 CMD ["/run.sh"]
 
 EXPOSE 1313
