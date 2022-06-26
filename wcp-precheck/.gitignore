@@ -1,0 +1,10 @@
+*.pyc
+*.log
+.idea/
+*.idea
+*.idea/
+.vscode/
+.DS_Store
+*.tar
+*.tgz
+*.zip

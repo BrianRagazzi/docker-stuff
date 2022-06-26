@@ -1,0 +1,5 @@
+.DS_Store
+Dockerfile
+Dockerfile-alpine
+archived
+buildimage.sh

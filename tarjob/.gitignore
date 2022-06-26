@@ -1,0 +1,10 @@
+params-*.yml
+refresh*.bat
+refresh*.sh
+private*.*
+*.crt
+*.tgz
+source
+dest
+buildandtag.sh
+.dockerignore
